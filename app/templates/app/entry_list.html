@@ -1,0 +1,22 @@
+{% block content %}
+<article>
+    <!-- Display the current date and time -->
+    <h2 class="mark">{% now "Y-m-d H:i" %}</h2>  <!-- Fixed closing </em> tag and used <h2> for proper structure -->
+
+    <!-- Link to create a new entry -->
+    <a href="{% url 'entry-create' %}">
+        <button>Add new entry</button>
+    </a>
+</article>
+
+<!-- Loop through the entries and display each one -->
+{% for entry in entry_list %}
+    <div class="entry">
+        <h3><a href="{% url 'entry-detail' entry.pk %}">{{ entry.title }}</a></h3>
+        <p>{{ entry.content|truncatewords:30 }}</p>  <!-- Display a preview of the content (truncated) -->
+        <p><small>Created on: {{ entry.date_created|date:"Y-m-d H:i" }}</small></p>
+    </div>
+{% empty %}
+    <p>No entries found.</p>
+{% endfor %}
+{% endblock content %}

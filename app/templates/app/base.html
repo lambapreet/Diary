@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Diary</title>
+    <link rel="stylesheet" href="{% static 'css/diary.css' %}">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">  <!-- Favicon -->
+</head>
+
+<body>
+    <h1><a href="/">Dear diary …</a></h1>
+
+    {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+            <li class="message">
+                {{ message }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% block content %}{% endblock content %}
+
+    <hr>
+
+    <div class="logout-form">
+        <form method="post" action="{% url 'admin:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn-logout">Logout</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

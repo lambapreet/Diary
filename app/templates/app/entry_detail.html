@@ -1,0 +1,14 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<article>
+    <h2>{{ entry.title }}</h2>
+    <p>{{ entry.content }}</p>
+    <p>Created on: {{ entry.date_created }}</p>
+
+    <p>
+        <a href="{% url 'entry-update' entry.id %}">✍️ Edit</a>
+        <a href="{% url 'entry-delete' entry.id %}">⛔ Delete</a>
+    </p>
+</article>
+{% endblock content %}
